@@ -27,7 +27,9 @@ jobs:
       -
         name: Set short git commit SHA
         id: var
-        run:  IMAGE_TAGS="${GITHUB_SHA::7}"
+        run: | 
+             IMAGE_TAGS="${GITHUB_SHA::7}"
+             echo "IMAGE_TAGS=$IMAGE_TAGS" >> $GITHUB_OUTPUT
       -
         name: Build and push
         uses: docker/build-push-action@v6
