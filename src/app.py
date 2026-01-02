@@ -12,6 +12,7 @@ def details():
     return jsonify({
         'time': datetime.date.today().strftime("%B %d, %Y"),
         'hostname': socket.gethostname()
+        'message': 'You are dong Great,Human'
     })
 
 @app.route('/api/v1/healthz')
