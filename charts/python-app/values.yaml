@@ -65,3 +65,23 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+livenessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: http
+readinessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: http
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+volumes: []
+volumeMounts: []
+resources:
+  requests:
+    cpu: 50m
+    memory: 50M
