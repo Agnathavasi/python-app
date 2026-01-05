@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: myprac/python-app
   pullPolicy: IfNotPresent
-  tag: 51193fc
+  tag: "83446e3"
 tag: v2
 imagePullSecrets: []
 nameOverride: ""
