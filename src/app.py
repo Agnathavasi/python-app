@@ -13,7 +13,7 @@ def details():
         'time': datetime.date.today().strftime("%B %d, %Y"),
         'hostname': socket.gethostname(),
         'message': 'You are doing Great'.
-        'Great': 'You are doing Great'
+        'Great': 'You are doing Awesome'
     })
 
 @app.route('/api/v1/healthz')
