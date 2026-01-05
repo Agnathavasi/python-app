@@ -11,6 +11,8 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.var.outputs.IMAGE_TAGS }}
     steps:
       -
         name: Login to Docker Hub
@@ -41,6 +43,18 @@ jobs:
     runs-on: arc-runner-set
     needs: ci
     steps:
+      - name: Code Checkout
+        uses: actions/checkout@v3
+      - name: Modify values file
+        shell: bash
+        run: |
+          echo ${{needs.ci.outputs.tag}}
+          pip install yq
+          yq -Yi '.image.tag = "${{needs.ci.outputs.tag}}"' charts/python-app/values.yaml
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+              message: 'Updates values.yaml with commit ${{needs.ci.outputs.tag}}'
       - name: Install argocd
         shell: bash
         run: |
